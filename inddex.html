@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Event Hub</title>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav>
+            <h1>Event Hub</h1>
+            <a href="#" id="menu"></a>
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>  
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <div class="container">
+                <h2>Welcome to Event Hub</h2>
+                <p>Discover upcoming events near you and join the excitement!</p>
+                <div class="button-container">
+                    <a href="#events" class="btn primary">Explore Events</a>
+                    <a href="#about" class="btn secondary">About Us</a>
+                    <a href="#contact" class="btn tertiary">Contact Us</a>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- Events Section -->
+        <section id="events" class="section">
+            <div class="container">
+                <h2>Upcoming Events</h2>
+                <div class="event-list">
+                    <!-- Event cards will be dynamically generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>Event Hub is dedicated to connecting people with exciting events happening in their area. Whether you're passionate about tech conferences, art exhibitions, music festivals, or other cultural events, we're here to help you discover and participate in what interests you the most.</p>
+        
+                <div class="highlights">
+                    <div class="highlight">
+                        <img src="e4.jpeg" alt="Icon 1">
+                        <h3>Explore Diverse Events</h3>
+                        <p>Discover a wide range of events from technology to arts and entertainment.</p>
+                    </div>
+                    <div class="highlight">
+                        <img src="e5.png" alt="Icon 2">
+                        <h3>Personalized Recommendations</h3>
+                        <p>Get personalized event recommendations based on your interests and location.</p>
+                    </div>
+                    <div class="highlight">
+                        <img src="e6.png" alt="Icon 3">
+                        <h3>Easy Event Management</h3>
+                        <p>Manage your event schedule and bookings conveniently through our platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>Have questions or feedback? We'd love to hear from you!</p>
+                
+                <form action="#" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="email">Your Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="message">Your Message:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+        
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <h1>Event Hub</h1>
+                <p>Connecting you with the best events.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/DevUjjawal123"><img src="github.png" alt="Github"></a>
+                <a href="https://x.com/Ujjawal1700?t=3CEyqjZ01prLscmdxh7X2A&s=09"><img src="twitter.png" alt="Twitter"></a>
+                <a href="https://www.linkedin.com/in/ujjawal-kumar-67b074225?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="linkdln.png" alt="LinkedIn"></a>
+            </div>
+            <div class="newsletter">
+                <h3>Subscribe to our Newsletter</h3>
+                <form action="#" method="POST" class="newsletter-form">
+                    <input type="email" id="newsletter-email" name="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <p>&copy; 2024 Event Hub. All rights reserved.</p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Festival 2024 - Event Hub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #333;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav__logo img {
+            height: 40px;
+        }
+
+        .nav__menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav__item {
+            margin-right: 1rem;
+        }
+
+        .nav__link {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav__link:hover,
+        .active-link {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .nav__toggle {
+            display: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        /* Home Section Styles */
+        .home__container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding-top: 80px; /* Adjusted to avoid header overlap */
+        }
+
+        .home__img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .home__data {
+            text-align: center;
+        }
+
+        .home__title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .home__description {
+            margin-bottom: 2rem;
+        }
+
+        .home__details {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .home__detail {
+            display: flex;
+            align-items: center;
+        }
+
+        .home__icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .button--flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button__icon {
+            margin-right: 0.5rem;
+        }
+
+        /* About Section Styles */
+        .about__container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about__img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .about__data {
+            text-align: center;
+        }
+
+        .section__title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about__description {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Schedule Section Styles */
+        .schedule__container {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .schedule__item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .schedule__time {
+            text-align: center;
+        }
+
+        .schedule__date {
+            font-weight: bold;
+        }
+
+        .schedule__title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule__description {
+            margin-bottom: 1rem;
+        }
+
+        /* Location Section Styles */
+        .location__container {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .location__map {
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .location__address {
+            text-align: center;
+        }
+
+        .location__title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Register Section Styles */
+        .register__container {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .register__data {
+            text-align: center;
+        }
+
+        .register__description {
+            margin-bottom: 1.5rem;
+        }
+
+        .register__form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .register__input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 4rem 0;
+        }
+
+        .footer__container {
+            display: grid;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer__logo img {
+            height: 40px;
+        }
+
+        .footer__title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer__links {
+            list-style: none;
+        }
+
+        .footer__link {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer__link:hover {
+            color: #ccc;
+        }
+
+        .footer__social {
+            margin-top: 1rem;
+        }
+
+        .footer__social-link {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer__social-link:hover {
+            color: #ccc;
+        }
+
+        .footer__copy {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .footer__copy-link {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer__copy-link:hover {
+            color: #ccc;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 1024px) {
+            .nav__menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #222;
+                z-index: 1000;
+                padding: 2rem;
+                flex-direction: column;
+                gap: 1rem;
+                justify-content: flex-start;
+                overflow-y: auto;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav__toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .nav__list {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav__link {
+                padding: 1rem 0;
+                text-align: center;
+            }
+
+            .nav__toggle.active + .nav__menu {
+                transform: translateY(0);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .home__container {
+                grid-template-columns: 1fr;
+            }
+
+            .about__container {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule__container {
+                grid-template-columns: 1fr;
+            }
+
+            .location__container {
+                grid-template-columns: 1fr;
+            }
+
+            .register__container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer__container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav__logo">
+                    <img src="m2.png" alt="Event Hub Logo">
+                </div>
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+                <ul class="nav__menu" id="nav-menu">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#schedule" class="nav__link">Schedule</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#location" class="nav__link">Location</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#register" class="nav__link">Register</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home section" id="home">
+        <div class="container home__container">
+            <img src="m1.jpeg" alt="Music Festival" class="home__img">
+            <div class="home__data">
+                <h2 class="home__title">Music Festival 2024</h2>
+                <p class="home__description">Join us for a weekend of music, fun, and community!</p>
+                <div class="home__details">
+                    <div class="home__detail">
+                        <i class="ri-calendar-line home__icon"></i>
+                        <span>October 12-14, 2024</span>
+                    </div>
+                    <div class="home__detail">
+                        <i class="ri-map-pin-line home__icon"></i>
+                        <span>Central Park, New York</span>
+                    </div>
+                </div>
+                <a href="#register" class="button button--flex">
+                    <i class="ri-add-circle-line button__icon"></i>
+                    Register Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container about__container">
+            <img src="m3.png" alt="About Music Festival" class="about__img">
+            <div class="about__data">
+                <h2 class="section__title">About Music Festival</h2>
+                <p class="about__description">
+                    The Music Festival is an annual celebration of music diversity and community gathering. Join us as we showcase talented artists and create unforgettable memories.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule section" id="schedule">
+        <div class="container schedule__container">
+            <div class="schedule__item">
+                <div class="schedule__time">
+                    <span class="schedule__date">October 12</span>
+                    <h3 class="schedule__title">Opening Ceremony</h3>
+                    <p class="schedule__description">Join us as we kick off the festival with exciting performances!</p>
+                </div>
+            </div>
+            <div class="schedule__item">
+                <div class="schedule__time">
+                    <span class="schedule__date">October 13</span>
+                    <h3 class="schedule__title">Main Stage Performances</h3>
+                    <p class="schedule__description">Enjoy a day filled with music from various genres.</p>
+                </div>
+            </div>
+            <div class="schedule__item">
+                <div class="schedule__time">
+                    <span class="schedule__date">October 14</span>
+                    <h3 class="schedule__title">Closing Party</h3>
+                    <p class="schedule__description">Wrap up the festival with a night of celebration!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location section" id="location">
+        <div class="container location__container">
+            <div class="location__map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.1937415612627!2d-73.9702996856626!3d40.785091286575404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2588f046ee661%3A0x3c0e6b4f8232d495!2sCentral%20Park!5e0!3m2!1sen!2sus!4v1625666752690!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="location__map"></iframe>
+            </div>
+            <div class="location__address">
+                <h2 class="section__title">Event Location</h2>
+                <p>Central Park, New York</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register Section -->
+    <section class="register section" id="register">
+        <div class="container register__container">
+            <div class="register__data">
+                <h2 class="section__title">Register for Music Festival 2024</h2>
+                <p class="register__description">Don't miss out! Reserve your spot now.</p>
+                <form action="#" class="register__form">
+                    <input type="text" placeholder="Full Name" class="register__input">
+                    <input type="email" placeholder="Email Address" class="register__input">
+                    <input type="tel" placeholder="Phone Number" class="register__input">
+                    <textarea placeholder="Message" rows="4" class="register__input"></textarea>
+                    <button type="submit" class="button">Register Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer section">
+        <div class="container footer__container">
+            <div class="footer__logo">
+                <img src="m4.jpeg" alt="Event Hub Logo">
+            </div>
+            <div class="footer__links">
+                <ul class="footer__links-list">
+                    <li class="footer__link-item">
+                        <a href="#home" class="footer__link">Home</a>
+                    </li>
+                    <li class="footer__link-item">
+                        <a href="#about" class="footer__link">About</a>
+                    </li>
+                    <li class="footer__link-item">
+                        <a href="#schedule" class="footer__link">Schedule</a>
+                    </li>
+                    <li class="footer__link-item">
+                        <a href="#location" class="footer__link">Location</a>
+                    </li>
+                    <li class="footer__link-item">
+                        <a href="#register" class="footer__link">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__social">
+                <a href="#" class="footer__social-link"><i class="ri-facebook-box-fill"></i></a>
+                <a href="#" class="footer__social-link"><i class="ri-twitter-fill"></i></a>
+                <a href="#" class="footer__social-link"><i class="ri-instagram-fill"></i></a>
+                <a href="#" class="footer__social-link"><i class="ri-youtube-fill"></i></a>
+            </div>
+        </div>
+        <div class="footer__copy">
+            <p>&copy; 2024 Event Hub. All rights reserved. Designed by Ujjawal Kumar.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Toggle Menu -->
+    <script>
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+            });
+        }
+
+        const navLink = document.querySelectorAll('.nav__link');
+
+        function linkAction() {
+            navMenu.classList.remove('show');
+        }
+
+        navLink.forEach(n => n.addEventListener('click', linkAction));
+    </script>
+</body>
+</html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Conference 2024 - Event Hub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* Reset CSS */
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+/* Adjusted Styles */
+.speakers__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem; /* Reduce the gap between speaker cards */
+    justify-content: center;
+}
+
+/* Ensure content avoids header */
+.section {
+    padding-top: 80px; /* Adjust padding to avoid content under fixed header */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    background-color: #333;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo img {
+    height: 40px;
+}
+
+.nav__menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav__list {
+    display: flex;
+    list-style: none;
+}
+
+.nav__item {
+    margin-right: 1rem;
+}
+
+.nav__link {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.nav__link:hover,
+.active-link {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.nav__toggle {
+    display: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* Home Section Styles */
+.home__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.home__img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.home__data {
+    text-align: center;
+}
+
+.home__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.home__description {
+    margin-bottom: 2rem;
+}
+
+.home__details {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.home__detail {
+    display: flex;
+    align-items: center;
+}
+
+.home__icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.button {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+.button--flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button__icon {
+    margin-right: 0.5rem;
+}
+
+/* About Section Styles */
+.about__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about__img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.about__data {
+    text-align: center;
+}
+
+.section__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about__description {
+    margin-bottom: 1.5rem;
+}
+
+/* Speakers Section Styles */
+.speakers__container {
+    padding: 2rem 0;
+}
+
+.speakers__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.speaker__card {
+    text-align: center;
+    width: 250px; /* Adjust the width as needed */
+    margin-bottom: 2rem;
+}
+
+.speaker__img {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 150px;
+    margin-bottom: 0.5rem;
+}
+
+.speaker__name {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.speaker__title {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.speaker__card.single {
+    flex: 0 0 100%; /* Take full width in a single column */
+}
+
+
+/* Schedule Section Styles */
+.schedule__container {
+    display: grid;
+    gap: 2rem;
+}
+
+.schedule__item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.schedule__time {
+    text-align: center;
+}
+
+.schedule__date {
+    font-weight: bold;
+}
+
+.schedule__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.schedule__description {
+    margin-bottom: 1rem;
+}
+
+/* Location Section Styles */
+.location__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.location__map {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.location__address {
+    text-align: center;
+}
+
+.location__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Register Section Styles */
+.register__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.register__data {
+    text-align: center;
+}
+
+.register__description {
+    margin-bottom: 1.5rem;
+}
+
+.register__form {
+    display: grid;
+    gap: 1rem;
+}
+
+.register__input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 4rem 0;
+}
+
+.footer__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    align-items: center;
+}
+
+.footer__logo img {
+    height: 40px;
+}
+
+.footer__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer__links {
+    list-style: none;
+}
+
+.footer__link {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+    color: #ccc;
+}
+
+.footer__social {
+    margin-top: 1rem;
+}
+
+.footer__social-link {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer__social-link:hover {
+    color: #ccc;
+}
+
+.footer__copy {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.footer__copy-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer__copy-link:hover {
+    color: #ccc;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+    .nav__menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #222;
+        z-index: 1000;
+        padding: 2rem;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: flex-start;
+        overflow-y: auto;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .nav__toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav__link {
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .nav__toggle.active + .nav__menu {
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .nav__logo img {
+        height: 30px;
+    }
+
+    .home__title {
+        font-size: 2rem;
+    }
+
+    .speaker__card {
+        margin-bottom: 2rem;
+    }
+
+    .schedule__item {
+        grid-template-columns: 100px 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer__container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .footer__link {
+        flex: 0 0 calc(50% - 0.5rem);
+    }
+}
+/* Button Styles */
+.button {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Ensure button text is centered */
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+.button--flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button__icon {
+    margin-right: 0.5rem;
+}
+
+.button--large {
+    padding: 1rem 2rem; /* Larger padding for a bigger button */
+    font-size: 1.2rem; /* Increase font size for better visibility */
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <img src="event1.jpeg" alt="Event Hub Logo">
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#speakers" class="nav__link">Speakers</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#schedule" class="nav__link">Schedule</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#location" class="nav__link">Location</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#register" class="nav__link">Register</a>
+                    </li>
+                </ul>
+
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-function-line"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Section -->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div>
+                    <img src="lp.jpeg" alt="Event Image" class="home__img">
+                </div>
+
+                <div class="home__data">
+                    <h1 class="home__title">Tech Conference 2024</h1>
+                    <p class="home__description">
+                        Join us for an immersive experience into the future of technology at the Tech Conference 2024.
+                    </p>
+                    <div class="home__details">
+                        <div class="home__detail">
+                            <i class="ri-calendar-event-fill home__icon"></i>
+                            <h3 class="home__detail-title">Date</h3>
+                            <p class="home__detail-text">October 15-17, 2024</p>
+                        </div>
+                        <div class="home__detail">
+                            <i class="ri-time-line home__icon"></i>
+                            <h3 class="home__detail-title">Timing</h3>
+                            <p class="home__detail-text">9:00 AM - 6:00 PM (Daily)</p>
+                        </div>
+                        <div class="home__detail">
+                            <i class="ri-map-pin-line home__icon"></i>
+                            <h3 class="home__detail-title">Location</h3>
+                            <p class="home__detail-text">Tech Hub Convention Center, San Francisco, CA</p>
+                        </div>
+                    </div>
+                    <a href="#register" class="button button--flex">
+                        <span class="button--flex">
+                            <i class="ri-shopping-bag-line button__icon"></i> Register Now
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="about__container container grid">
+                <div class="about__data">
+                    <h2 class="section__title">About the Conference</h2>
+                    <p class="about__description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit magna vitae lorem eleifend hendrerit. Duis ac euismod felis. Nullam vel velit et ex bibendum interdum.
+                    </p>
+                    <p class="about__description">
+                        Morbi et orci magna. Nulla facilisi. Mauris vel libero sit amet orci lacinia faucibus. Proin feugiat, nisi sit amet fermentum eleifend, ex lorem lacinia dolor, ut ultrices magna velit sed sapien.
+                    </p>
+                </div>
+                <div>
+                    <img src="lm.jpeg" alt="About Image" class="about__img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Speakers Section -->
+       <!-- Speakers Section -->
+<section class="speakers section" id="speakers">
+    <div class="speakers__container container grid">
+        <h2 class="section__title">Keynote Speakers</h2>
+        <div class="speakers__grid">
+            <div class="speaker__card">
+                <img src="sp1.jpeg" alt="Speaker 1" class="speaker__img">
+                <h3 class="speaker__name">John Doe</h3>
+                <p class="speaker__title">CEO, Tech Innovations Inc.</p>
+            </div>
+            <div class="speaker__card">
+                <img src="sp2.jpeg" alt="Speaker 2" class="speaker__img">
+                <h3 class="speaker__name">Jane Smith</h3>
+                <p class="speaker__title">VP of Engineering, FutureTech</p>
+            </div>
+            <div class="speaker__card single">
+                <img src="sp3.jpeg" alt="Speaker 3" class="speaker__img">
+                <h3 class="speaker__name">David Brown</h3>
+                <p class="speaker__title">Chief Scientist, AI Research Labs</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Schedule Section -->
+        <section class="schedule section" id="schedule">
+            <div class="schedule__container container grid">
+                <h2 class="section__title">Event Schedule</h2>
+                <div class="schedule__item">
+                    <div class="schedule__time">
+                        <p class="schedule__date">October 15, 2024</p>
+                        <p class="schedule__timing">9:00 AM - 11:00 AM</p>
+                    </div>
+                    <div class="schedule__details">
+                        <h3 class="schedule__title">Opening Ceremony</h3>
+                        <p class="schedule__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+                <div class="schedule__item">
+                    <div class="schedule__time">
+                        <p class="schedule__date">October 16, 2024</p>
+                        <p class="schedule__timing">10:00 AM - 1:00 PM</p>
+                    </div>
+                    <div class="schedule__details">
+                        <h3 class="schedule__title">Panel Discussion: Future Trends</h3>
+                        <p class="schedule__description">Nullam suscipit magna vitae lorem eleifend hendrerit.</p>
+                    </div>
+                </div>
+                <div class="schedule__item">
+                    <div class="schedule__time">
+                        <p class="schedule__date">October 17, 2024</p>
+                        <p class="schedule__timing">3:00 PM - 5:00 PM</p>
+                    </div>
+                    <div class="schedule__details">
+                        <h3 class="schedule__title">Closing Keynote: Innovation Beyond 2024</h3>
+                        <p class="schedule__description">Proin feugiat, nisi sit amet fermentum eleifend, ex lorem lacinia dolor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="location section" id="location">
+            <div class="location__container container grid">
+                <h2 class="section__title">Event Location</h2>
+                <div class="location__info">
+                    <div class="location__map">
+                        <!-- Embed Google Maps or another map service -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.6872836271076!2d-122.40773288474308!3d37.78373227975428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064b53c518f%3A0x17b2a741a83b5360!2sTech%20Hub%20Convention%20Center%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1620351054774!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="location__address">
+                        <h3 class="location__title">Tech Hub Convention Center</h3>
+                        <p class="location__text">123 Tech Street, San Francisco, CA 94103</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section class="register section" id="register">
+            <div class="register__container container grid">
+                <div class="register__data">
+                    <h2 class="section__title">Register Now</h2>
+                    <p class="register__description">
+                        Reserve your spot at the Tech Conference 2024. Don't miss out on this opportunity to connect, learn, and innovate!
+                    </p>
+                    <form action="#" class="register__form">
+                        <input type="text" placeholder="Full Name" class="register__input">
+                        <input type="email" placeholder="Email Address" class="register__input">
+                      
+                        <button class="button button--large">Register Now</button>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <a href="#" class="footer__logo">
+                <img src="ln.jpg" alt="Event Hub Logo">
+            </a>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Quick Links</h3>
+                <ul class="footer__links">
+                    <li><a href="#home" class="footer__link">Home</a></li>
+                    <li><a href="#about" class="footer__link">About</a></li>
+                    <li><a href="#speakers" class="footer__link">Speakers</a></li>
+                    <li><a href="#schedule" class="footer__link">Schedule</a></li>
+                    <li><a href="#location" class="footer__link">Location</a></li>
+                    <li><a href="#register" class="footer__link">Register</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Connect With Us</h3>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" class="footer__social-link"><i class="ri-instagram-line"></i></a>
+                    <a href="#" class="footer__social-link"><i class="ri-twitter-line"></i></a>
+                </div>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Contact Info</h3>
+                <p class="footer__text">Email: uk4148749@gmail.com</p>
+                <p class="footer__text">Phone: 9519xyz</p>
+            </div>
+        </div>
+
+        <p class="footer__copy">
+            <a href="https://www.techconference.com/" class="footer__copy-link" target="_blank">&copy; 2024 Event Hub. All rights reserved. Designed by Ujjawal Kumar.</a>
+        </p>
+    </footer>
+
+    <!-- Scroll Up Button -->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-s-line scrollup__icon"></i>
+    </a>
+
+    <!-- Scroll Reveal Script -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- Main JavaScript File -->
+    <script src="main.js"></script>
+</body>
+</html>
